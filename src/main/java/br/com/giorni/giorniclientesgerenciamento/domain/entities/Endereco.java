@@ -28,4 +28,7 @@ public class Endereco {
     @Column(nullable = false, name = "Estado", length = 50)
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_Cliente")
+    private Cliente cliente;
 }

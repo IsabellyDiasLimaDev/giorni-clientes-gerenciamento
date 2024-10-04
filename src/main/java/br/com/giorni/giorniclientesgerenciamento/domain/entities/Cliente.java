@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -26,6 +28,9 @@ public class Cliente {
 
     @Column(length = 100, nullable = true, name = "Email")
     private String email;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Endereco> enderecos;
 
 
 }
