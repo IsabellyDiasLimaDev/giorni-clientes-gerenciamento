@@ -36,6 +36,7 @@ public class ClienteService {
 
 
     public List<ClienteDTO> getAllClientes() {
+        modelMapper = new ModelMapper();
         List<Cliente> clientes = clienteRepository.findAll();
         List<ClienteDTO> clienteDTOs = new ArrayList<>();
         clientes.forEach(cliente -> {

@@ -22,13 +22,13 @@ public class EnderecoService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public EnderecoDTO createEndereco(EnderecoDTO enderecoDTO) {
+    public EnderecoDTO criarEndereco(EnderecoDTO enderecoDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Endereco endereco = modelMapper.map(enderecoDTO, Endereco.class);
         return modelMapper.map(enderecoRepository.save(endereco), EnderecoDTO.class);
     }
 
-    public List<EnderecoDTO> getAllEnderecos() {
+    public List<EnderecoDTO> listarTodosOsEnderecos() {
         ModelMapper modelMapper = new ModelMapper();
         List<Endereco> enderecos = enderecoRepository.findAll();
         List<EnderecoDTO> enderecoDTOs = new ArrayList<>();
@@ -38,24 +38,24 @@ public class EnderecoService {
         return enderecoDTOs;
     }
 
-    public EnderecoDTO getEndereco(Long id) {
+    public EnderecoDTO listarEndereco(Long id) {
         ModelMapper modelMapper = new ModelMapper();
         Endereco endereco = enderecoRepository.findById(id).get();
         return modelMapper.map(endereco, EnderecoDTO.class);
     }
 
-    public EnderecoDTO updateEndereco(EnderecoDTO enderecoDTO) {
+    public EnderecoDTO atualizarEndereco(EnderecoDTO enderecoDTO) {
         ModelMapper modelMapper = new ModelMapper();
         Endereco endereco = enderecoRepository.findById(enderecoDTO.getId()).get();
         modelMapper.map(enderecoDTO, endereco);
         return modelMapper.map(enderecoRepository.save(endereco), EnderecoDTO.class);
     }
 
-    public void deleteEndereco(Long id) {
+    public void excluirEndereco(Long id) {
         enderecoRepository.deleteById(id);
     }
 
-    public List<EnderecoDTO> getEnderecosByCliente(Long id) {
+    public List<EnderecoDTO> listarEnderecosPorCliente(Long id) {
         Cliente cliente = clienteRepository.findById(id).get();
         List<Endereco> enderecos = enderecoRepository.findByCliente(cliente);
         List<EnderecoDTO> enderecoDTOs = new ArrayList<>();

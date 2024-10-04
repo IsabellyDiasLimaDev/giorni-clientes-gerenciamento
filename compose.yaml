@@ -2,9 +2,14 @@ services:
   mysql:
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      MYSQL_DATABASE: 'giorni_clients_dev'
+      MYSQL_USER: 'user'  # Adicione um usuário específico
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - '3306'
+      - '3306:3306'  # Mapeie a porta do host para a porta do contêiner
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistência de dados
+
+volumes:
+  mysql_data:
